@@ -10,6 +10,7 @@ export default function (style, size, length) {
 
 	for (let index = 0; index < oprationLength; index++) {
 		doms = (doms || '') + `<div class="${s.element}" style="
+		-webkit-transform:rotate(${index * 360/oprationLength}deg) translate(0, ${fixpx(oprationSize)});
 		transform:rotate(${index * 360/oprationLength}deg) translate(0, ${fixpx(oprationSize)});
 		${inlineStyle(vertices)}"></div>
 		`;
