@@ -5,7 +5,6 @@ export default function (style, size, length) {
 	const { overlay, content, vertices } = style || {};
 	const oprationLength = parseInt(length || 12, 10);
 	const oprationSize = parseInt(size || 20, 10) * -1;
-	console.log('oprationSize', oprationSize);
 	let doms= null;
 
 	for (let index = 0; index < oprationLength; index++) {

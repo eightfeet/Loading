@@ -21,7 +21,6 @@ class Loading {
 
 	hide = () => {
 		this.counter = this.counter < 0 ? 0 : this.counter - 1;
-		console.log(this.counter);
 		if (this.counter === 0) {
 			this.destory();
 		}
