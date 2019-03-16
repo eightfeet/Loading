@@ -30,7 +30,6 @@ export default function (style, size, length, cycle, verticesColor) {
 
 	if (Array.isArray(verticesColor)) {
 		colorArray = verticesColor;
-		console.log(colorArray);
 	}
 
 	for (let index = 0; index < oprationLength; index++) {
