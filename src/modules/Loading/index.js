@@ -4,12 +4,14 @@ import { createDom, removeDom } from '~/utils/htmlFactory.js';
 class Loading {
 	constructor(config) {
 		const stamp = (new Date()).getTime();
-		const {style, id, size, length} = config || {};
+		const {style, id, size, length, verticesColor, cycle} = config || {};
 		this.style = style;
 		this.id = id || `modal${stamp}-${window.Math.floor(window.Math.random()*100)}`;
 		this.counter = 0;
 		this.size = size;
 		this.length = length;
+		this.verticesColor = verticesColor;
+		this.cycle = cycle;
 	}
 
 	show = () => {
@@ -32,7 +34,7 @@ class Loading {
 	}
 
 	create = () => {
-		return createDom(template(this.style, this.size, this.length), this.id);
+		return createDom(template(this.style, this.size, this.length, this.cycle, this.verticesColor), this.id);
 	}
 
 	destory = () => {
