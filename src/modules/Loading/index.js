@@ -34,7 +34,13 @@ class Loading {
 	}
 
 	create = () => {
-		return createDom(template(this.style, this.size, this.length, this.cycle, this.verticesColor), this.id);
+		return createDom(template({
+			style: this.style,
+			size: this.size,
+			length: this.length,
+			cycle: this.cycle,
+			verticesColor: this.verticesColor
+		}), this.id);
 	}
 
 	destory = () => {
