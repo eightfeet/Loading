@@ -15,7 +15,7 @@
     var newLoading = new ___Loading___({
         size: 20, // loading大小 默认20
         length: 5, // 由几个vertices组成默认12个
-        verticesColor: ['red', 'green', 'blue', 'yellow', 'orange'],
+        // verticesColors: ['red', 'green', 'blue', 'yellow', 'orange'],
         cycle: 0.5,
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             overlay: {
@@ -29,8 +29,9 @@
                 height: '.6em',
                 width: '.6em',
                 borderRadius: '1em',
-                backgroundColor: "red"
-            }
+                backgroundColor: "green"
+            },
+            verticesColors: ['red', 'green', 'blue', 'yellow', 'orange']
         }
     });
 
