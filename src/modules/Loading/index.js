@@ -1,4 +1,5 @@
 import template from './template/index';
+import s from './template/Loading.scss';
 import { createDom, removeDom } from '~/utils/htmlFactory.js';
 
 class Loading {
@@ -6,7 +7,7 @@ class Loading {
 		const stamp = (new Date()).getTime();
 		const {style, id, size, length, verticesColor, cycle} = config || {};
 		this.style = style;
-		this.id = id || `modal${stamp}-${window.Math.floor(window.Math.random()*100)}`;
+		this.id = id || `loading${stamp}-${window.Math.floor(window.Math.random()*100)}`;
 		this.counter = 0;
 		this.size = size;
 		this.length = length;
@@ -40,7 +41,11 @@ class Loading {
 			length: this.length,
 			cycle: this.cycle,
 			verticesColor: this.verticesColor
-		}), this.id);
+		}), this.id).then(() => setTimeout(() => {
+			const dom = document.getElementById(this.id)
+				.querySelector(`.${s.uildefaultcss}`);
+			dom.style.opacity = 1;
+		}), 100);
 	}
 
 	destory = () => {
