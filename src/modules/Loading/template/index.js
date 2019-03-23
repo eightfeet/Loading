@@ -49,7 +49,7 @@ export default function ({style, size, length, cycle, verticesColors, parentId})
 
 	return (
 		`
-		<div class="${s.overlay}" style="position: ${parentIdDom ? 'relative' : 'fixed'}; z-index:10000; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
+		<div class="${s.overlay}" style="position: ${parentIdDom ? 'absolute' : 'fixed'}; z-index:10000; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
 			<div ${inlineStyle(content) ? `style="${inlineStyle(content)}"` : ''} class="${s.uildefaultcss} ${s.block}">
 				${doms}
 			</div>
