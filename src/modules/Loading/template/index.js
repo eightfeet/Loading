@@ -18,7 +18,8 @@ function getArr(a1, an, length){
 	return arr;
 }
 
-export default function ({style, size, length, cycle, verticesColor}) {
+export default function ({style, size, length, cycle, verticesColor, parentId}) {
+	const parentIdDom = document.getElementById(parentId);
 	const { overlay, content, vertices } = style || {};
 	const oprationLength = parseInt(length || 12, 10);
 	const oprationSize = parseInt(size || 20, 10) * -1;
@@ -48,7 +49,7 @@ export default function ({style, size, length, cycle, verticesColor}) {
 
 	return (
 		`
-		<div class="${s.overlay}" style="z-index:10000; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
+		<div class="${s.overlay}" style="position: ${parentIdDom ? 'relative' : 'fixed'}; z-index:10000; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
 			<div ${inlineStyle(content) ? `style="${inlineStyle(content)}"` : ''} class="${s.uildefaultcss} ${s.block}">
 				${doms}
 			</div>

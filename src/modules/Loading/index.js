@@ -5,12 +5,13 @@ import { createDom, removeDom } from '~/utils/htmlFactory.js';
 class Loading {
 	constructor(config) {
 		const stamp = (new Date()).getTime();
-		const {style, id, size, length, verticesColors, cycle} = config || {};
+		const {style, id, size, length, verticesColors, cycle, parentId} = config || {};
 		this.style = style;
 		this.verticesColorStyle = style.verticesColors || null;
 		this.id = id || `loading${stamp}-${window.Math.floor(window.Math.random()*100)}`;
 		this.counter = 0;
 		this.size = size;
+		this.parentId = parentId;
 		this.length = length;
 		this.verticesColors = verticesColors;
 		this.cycle = cycle;
@@ -41,8 +42,9 @@ class Loading {
 			size: this.size,
 			length: this.length,
 			cycle: this.cycle,
+			parentId: this.parentId,
 			verticesColor: this.verticesColor || this.verticesColorStyle
-		}), this.id).then(() => setTimeout(() => {
+		}), this.id, this.parentId).then(() => setTimeout(() => {
 			const dom = document.getElementById(this.id)
 				.querySelector(`.${s.uildefaultcss}`);
 			dom.style.opacity = 1;
