@@ -18,7 +18,7 @@ function getArr(a1, an, length){
 	return arr;
 }
 
-export default function ({style, size, length, cycle, verticesColor, parentId}) {
+export default function ({style, size, length, cycle, verticesColors, parentId}) {
 	const parentIdDom = document.getElementById(parentId);
 	const { overlay, content, vertices } = style || {};
 	const oprationLength = parseInt(length || 12, 10);
@@ -29,8 +29,8 @@ export default function ({style, size, length, cycle, verticesColor, parentId}) 
 
 	let colorArray = [];
 
-	if (Array.isArray(verticesColor)) {
-		colorArray = verticesColor;
+	if (Array.isArray(verticesColors)) {
+		colorArray = verticesColors;
 	}
 
 	for (let index = 0; index < oprationLength; index++) {
