@@ -1,11 +1,10 @@
 import template from './template/index';
-import s from './template/Loading.scss';
 import { createDom, removeDom } from '~/utils/htmlFactory.js';
 
 class Loading {
 	constructor(config) {
 		const stamp = (new Date()).getTime();
-		const {style, id, size, length, verticesColors, cycle, parentId} = config || {};
+		const {style, id, size, length, cycle, parentId, emBase} = config || {};
 		this.style = style;
 		this.verticesColorsStyle = style.verticesColors || null;
 		this.id = id || `loading${stamp}-${window.Math.floor(window.Math.random()*100)}`;
@@ -13,8 +12,8 @@ class Loading {
 		this.size = size;
 		this.parentId = parentId;
 		this.length = length;
-		this.verticesColors = verticesColors;
 		this.cycle = cycle;
+		this.emBase = emBase;
 	}
 
 	show = () => {
@@ -42,13 +41,8 @@ class Loading {
 			size: this.size,
 			length: this.length,
 			cycle: this.cycle,
-			parentId: this.parentId,
-			verticesColors: this.verticesColors || this.verticesColorsStyle || []
-		}), this.id, this.parentId).then(() => setTimeout(() => {
-			const dom = document.getElementById(this.id)
-				.querySelector(`.${s.uildefaultcss}`);
-			dom.style.opacity = 1;
-		}), 100);
+			parentId: this.parentId
+		}), this.id, this.parentId, this.emBase);
 	}
 
 	destory = () => {

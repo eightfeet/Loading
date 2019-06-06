@@ -23,12 +23,10 @@
     }
 
 .uildefaultcss {
-    opacity: 0.3;
     position: relative;
     background: none;
     width: fixpx(200);
     height: fixpx(200);
-    transition: opacity 0.4s;
 }
 
 .uildefaultcss>div {

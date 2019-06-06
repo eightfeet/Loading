@@ -14,26 +14,26 @@
 </body>
 <script>
     var newLoading = new ___Loading___({
-        size: 20, // loading大小 默认20
-        length: 5, // 由几个vertices组成默认12个
-        // verticesColors: ['red', 'green', 'blue', 'yellow', 'orange'],
-        cycle: 0.5,
+        size: 40, // loading大小 默认20
+        length: 50, // 由几个vertices组成默认12个
+        cycle: 1,
         parentId: 'parentId',
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             overlay: {
                 backgroundColor: 'rgba(0,0,0,0)'
             },
             content: {
-                backgroundColor: 'rgba(0,0,0,0)'
+                backgroundColor: 'rgba(0,0,0,0)',
             },
             vertices: {
-                // backgroundColor: 'rgba(100, 100, 100, 0.2)'
-                height: '.6em',
-                width: '.6em',
+                height: '0.5em',
+                width: '0.5em',
                 borderRadius: '1em',
-                backgroundColor: "green"
+                backgroundColor: "green",
+                'animation-duration': "asdasd",
+                elements: ['red', 'green', 'yellow', 'orange', 'blue'],
+                size: '30%'
             },
-            verticesColors: ['red', 'green', 'blue', 'yellow', 'orange']
         }
     });
 
