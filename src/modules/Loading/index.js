@@ -4,7 +4,7 @@ import { createDom, removeDom } from '~/utils/htmlFactory.js';
 class Loading {
 	constructor(config) {
 		const stamp = (new Date()).getTime();
-		const {style, id, size, length, cycle, parentId, emBase} = config || {};
+		const {style, id, size, length, cycleTime, parentId, emBase} = config || {};
 		this.style = style;
 		this.verticesColorsStyle = style.verticesColors || null;
 		this.id = id || `loading${stamp}-${window.Math.floor(window.Math.random()*100)}`;
@@ -12,7 +12,7 @@ class Loading {
 		this.size = size;
 		this.parentId = parentId;
 		this.length = length;
-		this.cycle = cycle;
+		this.cycleTime = parseInt(cycleTime, 10) || 0.5;
 		this.emBase = emBase;
 	}
 
@@ -40,7 +40,7 @@ class Loading {
 			style: this.style,
 			size: this.size,
 			length: this.length,
-			cycle: this.cycle,
+			cycleTime: this.cycleTime,
 			parentId: this.parentId
 		}), this.id, this.parentId, this.emBase);
 	}

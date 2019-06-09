@@ -18,7 +18,7 @@ function getArr(a1, an, length){
 	return arr;
 }
 
-export default function ({style, size, length, cycle, parentId}) {
+export default function ({style, size, length, cycleTime, parentId}) {
 	const parentIdDom = document.getElementById(parentId);
 	const { overlay, content, vertices } = style || {};
 	const { elements } = vertices || {};
@@ -41,7 +41,7 @@ export default function ({style, size, length, cycle, parentId}) {
 		delete vertices['size'];
 	}
 
-	let time = cycle || 0.5;
+	let time = cycleTime;
 	if ( vertices['animationDuration'] || vertices['-webkit-animation-duration'] || vertices['animation-duration']) {
 		time = Number.parseFloat(vertices['animationDuration'] || vertices['-webkit-animation-duration'] || vertices['animation-duration']) || time;
 		delete vertices['animationDuration'];
