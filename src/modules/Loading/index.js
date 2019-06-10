@@ -4,9 +4,8 @@ import { createDom, removeDom } from '~/utils/htmlFactory.js';
 class Loading {
 	constructor(config) {
 		const stamp = (new Date()).getTime();
-		const {style, id, size, length, cycleTime, parentId, emBase} = config || {};
+		const {style, id, size, length, cycleTime, parentId, emBase, zIndex} = config || {};
 		this.style = style;
-		this.verticesColorsStyle = style.verticesColors || null;
 		this.id = id || `loading${stamp}-${window.Math.floor(window.Math.random()*100)}`;
 		this.counter = 0;
 		this.size = size;
@@ -14,6 +13,7 @@ class Loading {
 		this.length = length;
 		this.cycleTime = parseInt(cycleTime, 10) || 0.5;
 		this.emBase = emBase;
+		this.zIndex = parseInt(zIndex, 10) || 10000;
 	}
 
 	show = () => {
@@ -41,8 +41,9 @@ class Loading {
 			size: this.size,
 			length: this.length,
 			cycleTime: this.cycleTime,
-			parentId: this.parentId
-		}), this.id, this.parentId, this.emBase);
+			parentId: this.parentId,
+			zIndex: this.zIndex
+		}, this), this.id, this.parentId, this.emBase);
 	}
 
 	destory = () => {

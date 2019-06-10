@@ -18,7 +18,7 @@ function getArr(a1, an, length){
 	return arr;
 }
 
-export default function ({style, size, length, cycleTime, parentId}) {
+export default function ({style, size, length, cycleTime, parentId, zIndex}, Loading) {
 	const parentIdDom = document.getElementById(parentId);
 	const { overlay, content, vertices } = style || {};
 	const { elements } = vertices || {};
@@ -37,7 +37,7 @@ export default function ({style, size, length, cycleTime, parentId}) {
 
 	let oprationSize = (parseInt(size, 10) || 20) * -1;
 	if (vertices.size && parseInt(vertices.size, 10)) {
-		oprationSize = vertices.size;
+		oprationSize = Loading.size = parseInt(vertices.size, 10);
 		delete vertices['size'];
 	}
 
@@ -51,6 +51,8 @@ export default function ({style, size, length, cycleTime, parentId}) {
 
 	let doms= null;
 	const timeArray = getArr(time*-1,0,oprationLength+1);
+	// 深拷贝一次
+	const deepVertices = JSON.parse(JSON.stringify(vertices));
 	
 	for (let index = 0; index < oprationLength; index++) {
 		doms = (doms || '') + `<div class="${s.element}" style="
@@ -60,15 +62,14 @@ export default function ({style, size, length, cycleTime, parentId}) {
 		animation-delay: ${timeArray[index]}s;
 		-webkit-animation-duration: ${time}s;
 		animation-duration: ${time}s;
-		${inlineStyle(vertices) ? inlineStyle(vertices) : ''}
+		${inlineStyle(deepVertices) ? inlineStyle(deepVertices) : ''}
 		${colorArray.length > 1 ? `background-color:${colorArray[index]}`: ''}
 		"></div>
 		`;
 	}
-
 	return (
 		`
-		<div class="${s.overlay}" style="position: ${parentIdDom ? 'absolute' : 'fixed'}; z-index:10000; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
+		<div class="${s.overlay}" style="position: ${parentIdDom ? 'absolute' : 'fixed'}; z-index:${zIndex}; ${inlineStyle(overlay) ? inlineStyle(overlay) : ''}">
 			<div ${inlineStyle(content) ? `style="${inlineStyle(content)}"` : ''} class="${s.uildefaultcss} ${s.block}">
 				${doms}
 			</div>

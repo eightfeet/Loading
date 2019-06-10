@@ -5,16 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Loading</title>
+    <style>
+        .center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #parentId {
+            width: 100px; height: 100px; position: relative; margin: 0 auto;
+        }
+        
+        #exampleshow {
+            line-height: 40px; background-color: rgb(20, 159, 64); width:260px; margin: 30px auto 10px auto; color: #fff; border-radius: 0.2em;
+            text-align: center;
+        }
+
+        #examplehide {
+            line-height: 40px; background-color: rgb(159, 115, 115); width:260px; margin: 20px auto 0 auto; color: #fff; border-radius: 0.2em;
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid #aaa;
+            padding: 3px;
+        }
+    </style>
 </head>
 <body>
-    <div id="example">click me 创建Loading</div>
+    <div class="center">Page load times&nbsp;&nbsp;<span id="counter">0</span></div>
+    <div id="parentId" ></div>
+    <div id="exampleshow">click me show Loading</div>
+    <div id="examplehide">click me hide Loading</div>
     <br /><br />
-    <div id="parentId" style="width: 50px; height: 50px; position: relative;"></div>
-    <div id="exampleshow">显示已创建的Loading</div>
+    
 </body>
 <script>
     var newLoading = new ___Loading___({
-        size: 40, // loading大小 默认20
+        size: 50, // loading大小 默认20
         length: 50, // 由几个vertices组成默认12个
         cycleTime: 1,
         parentId: 'parentId',
@@ -26,30 +53,29 @@
                 backgroundColor: 'rgba(0,0,0,0)',
             },
             vertices: {
-                height: '0.5em',
-                width: '0.5em',
+                height: '0.4em',
+                width: '0.4em',
                 borderRadius: '1em',
                 backgroundColor: "green",
                 'animation-duration': "asdd",
-                elements: ['red', 'green', 'yellow', 'orange', 'blue'],
-                size: '30%'
+                elements: ['red','orange','blue','black', 'chocolate', 'mediumblue'],
+                size: '20%'
             },
         }
     });
 
-    var btn = document.getElementById('example');
     var btnshow = document.getElementById('exampleshow');
-
-    btn.onclick = function(){
-        newLoading.show();
-        newLoading.show();
-        newLoading.show();
-        newLoading.show();
-        newLoading.show();
-    }
+    var btnhide = document.getElementById('examplehide');
+    var counter = document.getElementById('counter');
 
     btnshow.onclick = function(){
         newLoading.show();
+        counter.innerHTML = newLoading.counter;
+    }
+
+    btnhide.onclick = function(){
+        newLoading.hide();
+        counter.innerHTML = newLoading.counter;
     };
 </script>
 </html>
