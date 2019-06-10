@@ -1,5 +1,10 @@
 
 
+# Loading
+
+Loading模块，需要promise polyfill
+<a href="http://www.eightfeet.cn/Loading/dist/index.html" traget="_blank" >demo</a>
+
 #### parame
 
 | 参数      | 说明                            | 是否必填 | 备注                                                         | 类型   |
