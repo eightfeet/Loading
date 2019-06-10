@@ -11,8 +11,14 @@
             margin-bottom: 20px;
         }
 
-        #parentId {
-            width: 100px; height: 100px; position: relative; margin: 0 auto;
+        .parent {
+            float: left;
+            width: 100px; height: 100px; position: relative;
+        }
+
+        .parentbox {
+            width: 300px;
+            margin: 0 auto 20px auto;
         }
         
         #exampleshow {
@@ -29,22 +35,29 @@
             border: 1px solid #aaa;
             padding: 3px;
         }
+
+        .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+        .clearfix{*+height:1%;}
     </style>
 </head>
 <body>
-    <div class="center">Page load times&nbsp;&nbsp;<span id="counter">0</span></div>
-    <div id="parentId" ></div>
+    <div class="center">show&nbsp;<span id="counter">0</span>&nbsp;times</div>
+    <div class="parentbox clearfix">
+        <div id="parentId1"  class="parent"></div>
+        <div id="parentId2" class="parent"></div>
+        <div id="parentId3" class="parent"></div>
+    </div>
     <div id="exampleshow">click me show Loading</div>
     <div id="examplehide">click me hide Loading</div>
     <br /><br />
     
 </body>
 <script>
-    var newLoading = new ___Loading___({
+    var newLoading1 = new ___Loading___({
         size: 50, // loading大小 默认20
         length: 50, // 由几个vertices组成默认12个
         cycleTime: 1,
-        parentId: 'parentId',
+        parentId: 'parentId1',
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             overlay: {
                 backgroundColor: 'rgba(0,0,0,0)'
@@ -64,18 +77,50 @@
         }
     });
 
+    var newLoading2 = new ___Loading___({
+        length: 50, // 由几个vertices组成默认12个
+        cycleTime: 1,
+        parentId: 'parentId2',
+        style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
+            vertices: {
+                height: '0.4em',
+                width: '0.4em',
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                size: '20%'
+            },
+        }
+    });
+
+    var newLoading3 = new ___Loading___({
+        parentId: 'parentId3',
+        style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
+            content: {
+                backgroundColor: 'rgba(0,0,0,0)',
+            },
+            vertices: {
+                height: '0.6em',
+                width: '2px',
+                size: '30%'
+            },
+        }
+    });
+
     var btnshow = document.getElementById('exampleshow');
     var btnhide = document.getElementById('examplehide');
     var counter = document.getElementById('counter');
 
     btnshow.onclick = function(){
-        newLoading.show();
-        counter.innerHTML = newLoading.counter;
+        newLoading1.show();
+        newLoading2.show();
+        newLoading3.show();
+        counter.innerHTML = newLoading1.counter;
     }
 
     btnhide.onclick = function(){
-        newLoading.hide();
-        counter.innerHTML = newLoading.counter;
+        newLoading1.hide();
+        newLoading2.hide();
+        newLoading3.hide();
+        counter.innerHTML = newLoading1.counter;
     };
 </script>
 </html>

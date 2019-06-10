@@ -53,7 +53,7 @@ function setEmBase (dom, parentId, emBase) {
  * @param {String} target (Required) element id
  * @returns
  */
-export function createDom(dom, target, parientId, emBase) {
+export function createDom(dom, target, parentId, emBase) {
 	return new Promise((resolve, reject) => {
 		if (!target || !dom) {
 			reject('function createDom: params "dom" or "target" not found.');
@@ -67,7 +67,7 @@ export function createDom(dom, target, parientId, emBase) {
 		const div = document.createElement('div');
 		div.setAttribute('id', target);
 		setEmBase(div, parentId, emBase);
-		const parientIdDom = document.getElementById(parientId);
+		const parientIdDom = document.getElementById(parentId);
 		if (parientIdDom) {
 			parientIdDom.appendChild(div);
 			const targetDom = document.getElementById(target);
