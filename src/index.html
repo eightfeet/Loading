@@ -14,6 +14,7 @@
         .parent {
             float: left;
             width: 100px; height: 100px; position: relative;
+            font-size: 1em;
         }
 
         .parentbox {
@@ -57,6 +58,7 @@
         size: 50, // loading大小 默认20
         length: 50, // 由几个vertices组成默认12个
         cycleTime: 1,
+        emBase: 14,
         parentId: 'parentId1',
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             overlay: {
@@ -80,6 +82,7 @@
     var newLoading2 = new ___Loading___({
         length: 50, // 由几个vertices组成默认12个
         cycleTime: 1,
+        emBase: 14,
         parentId: 'parentId2',
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             vertices: {
@@ -93,6 +96,7 @@
 
     var newLoading3 = new ___Loading___({
         parentId: 'parentId3',
+        emBase: 14,
         style: { // 定义样式 {overlay: 覆盖层, content: 内容区, vertices: 组成节点}
             content: {
                 backgroundColor: 'rgba(0,0,0,0)',
