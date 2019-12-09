@@ -14,7 +14,6 @@ Loading模块，需要promise polyfill
 | emBase    | em单位的基准像素                | 否       | 默认自动计算（emBase = document.clientWidth/24）             | Number |
 | parentId  | 所挂载的父级ID用于做局部Loading | 否       | 默认挂在body下面，指定父级dom时将挂载在父级dom下，配合css实现局部loading | String |
 | cycleTime | 旋转周期                        | 否       | 默认0.5s                                                     | Number |
-| size      | 大小                            | 否       | 默认20                                                       | Number |
 | style     | Loading样式                     | 是       | 定义loading样式<br /> {<br />    overlay: 覆盖层, <br />    content: 内容区, <br />    vertices: loading阵列元素点样式 留意其中特殊属性见下表， <br />} <br /> | Object |
 | length    | loading组成圈的元素个数         | 否       | 默认12个                                                     |        |
 
