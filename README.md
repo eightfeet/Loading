@@ -24,7 +24,7 @@ parpme中style特殊属性
 | 属性              | 说明                                                         | 类型         |
 | ----------------- | ------------------------------------------------------------ | ------------ |
 | animationDuration | 动画时间，可覆盖 parame中的cycleTime参数                     | Number       |
-| size              | loading大小，可覆盖 parame中的size参数                       | Number       |
+| size              | loading的直径大小                       | Number       |
 | elements          | loading由几个元素点组成，可以是Number类型也可以是Array类型，<br />Number类型时，可覆盖 parame中的length参数；<br />Array类型时，<br />        1、数组元素可以为一组不同颜色值，loading组成的阵列元素将以每个元素的颜色值排列<br />        2、数组的长度（Array.length） 将会覆盖parame中的length，<br /> | Number/Array |
 
 #### options
@@ -47,7 +47,6 @@ parpme中style特殊属性
 import Loading from '@eightfeet/Loading';
 
 var newLoading = new Loading({
-        size: 40, // loading大小 默认20
         length: 50, // 由几个vertices组成默认12个
         cycleTime: 1,
         parentId: 'parentId',
@@ -65,7 +64,7 @@ var newLoading = new Loading({
                 backgroundColor: 'green',
                 animationDuration: 'green', // 动画周期
                 elements: ['red', 'green', 'yellow', 'orange', 'blue'],
-                size: '30%'
+                size: '20px'
             },
         }
     });
