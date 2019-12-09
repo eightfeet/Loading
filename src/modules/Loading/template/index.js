@@ -1,5 +1,5 @@
 import s from './Loading.scss';
-import { inlineStyle, fixpx } from '~/utils/tools';
+import { inlineStyle } from '~/utils/tools';
 
 /**
  *
@@ -18,9 +18,30 @@ function getArr(a1, an, length){
 	return arr;
 }
 
-export default function ({style, size, length, cycleTime, parentId, zIndex}, Loading) {
+const cssUnits = [
+	'rem',
+	'em',
+	'vh',
+	'vw',
+	'vmin',
+	'vmax',
+	'ex',
+	'%',
+	'px',
+	'cm',
+	'mm',
+	'in',
+	'pt',
+	'pc',
+	'ch'
+];
+
+export default function ({style, length, cycleTime, parentId, zIndex}) {
 	const parentIdDom = document.getElementById(parentId);
-	const { overlay, content, vertices } = style || {};
+	const { overlay, content } = style || {};
+
+	const vertices = JSON.parse(JSON.stringify(style.vertices || {}));
+
 	const { elements } = vertices || {};
 
 	let colorArray = [];
@@ -35,10 +56,30 @@ export default function ({style, size, length, cycleTime, parentId, zIndex}, Loa
 		oprationLength = Number.parseInt(elements, 10);
 	}
 
-	let oprationSize = (parseInt(size, 10) || 20) * -1;
-	if (vertices.size && parseInt(vertices.size, 10)) {
-		oprationSize = Loading.size = parseInt(vertices.size, 10);
-		delete vertices['size'];
+	let oprationSize = 0;
+	if (vertices.height) {
+		// eslint-disable-next-line no-useless-escape
+		const parts = vertices.height.match(/[a-zA-Z]+|[\.\d]+/g);
+		const value = parts[0];
+		const unit = parts[parts.length - 1];
+		if (cssUnits.indexOf(unit) !== -1) {
+			oprationSize = `${value * 1.5}${unit || ''}`;
+		}
+	}
+	
+	if (vertices.size) {
+		// eslint-disable-next-line no-useless-escape
+		const parts = vertices.size.match(/[a-zA-Z]+|[\.\d]+/g);
+		const value = parts[0];
+		const unit = parts[parts.length - 1];
+		if (cssUnits.indexOf(unit) !== -1) {
+			oprationSize = `${value / 2}${unit || ''}`;
+		}
+	}
+
+	if (!vertices.size && !vertices.height) {
+		vertices.height = '0.4em';
+		oprationSize = '0.8em';
 	}
 
 	let time = cycleTime;
@@ -53,11 +94,10 @@ export default function ({style, size, length, cycleTime, parentId, zIndex}, Loa
 	const timeArray = getArr(time*-1,0,oprationLength+1);
 	// 深拷贝一次
 	const deepVertices = JSON.parse(JSON.stringify(vertices));
-	
 	for (let index = 0; index < oprationLength; index++) {
 		doms = (doms || '') + `<div class="${s.element}" style="
-		-webkit-transform:rotate(${index * 360/oprationLength}deg) translate(0, ${fixpx(oprationSize)});
-		transform:rotate(${index * 360/oprationLength}deg) translate(0, ${fixpx(oprationSize)});
+		-webkit-transform:rotate(${index * 360/oprationLength}deg) translate(0, ${oprationSize});
+		transform:rotate(${index * 360/oprationLength}deg) translate(0, ${oprationSize});
 		-webkit-animation-delay: ${timeArray[index]}s;
 		animation-delay: ${timeArray[index]}s;
 		-webkit-animation-duration: ${time}s;
