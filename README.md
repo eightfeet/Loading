@@ -44,7 +44,7 @@ parpme中style特殊属性
 #### case
 
 ```javascript
-import Loading from '@eightfeet/Loading';
+import Loading from '@eightfeet/loading';
 
 var newLoading = new Loading({
         length: 50, // 由几个vertices组成默认12个
